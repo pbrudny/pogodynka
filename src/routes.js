@@ -6,9 +6,9 @@ import WeatherContainer from "./features/weather/WeatherContainer";
 const Routes = () => (
   <main>
     <Switch>
+      <Route exact path="/not-found" component={NotFound} />
       <Route exact path="/:city" component={WeatherContainer} />
       <Route exact path="/" component={WeatherContainer} />
-      <Route exact path="/*" component={NotFound} />
     </Switch>
   </main>
 );
