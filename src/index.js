@@ -1,18 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import store from './app/store';
+
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import { Router } from 'react-router-dom';
 import history from './history';
+import weather from "openweather-apis";
+import configureStore from "./store";
+
+const store = configureStore();
+const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+
+weather.setLang('pl');
+weather.setAPPID(API_KEY);
 
 ReactDOM.render(
   <React.StrictMode>
     <Router history={history}>
-    <Provider store={store}>
-      <App />
-    </Provider>
+      <Provider store={store}>
+        <App />
+      </Provider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
