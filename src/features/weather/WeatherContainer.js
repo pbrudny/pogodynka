@@ -77,9 +77,11 @@ class WeatherContainer extends Component {
         </Col>
       </Row>
         <hr />
-        <Row>
-          {this.mainCitiesWeather(this.props.mainCitiesWeather)}
-        </Row>
+        {this.props.cityWeather.cod === '200' &&
+          <Row>
+            {this.mainCitiesWeather(this.props.mainCitiesWeather)}
+          </Row>
+        }
     </>
     )
   }
