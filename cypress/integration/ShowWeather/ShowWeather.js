@@ -18,7 +18,16 @@ Then('I should see the city weather', (term) => {
 });
 
 Then('I should see all main cities weather', (term) => {
-  cy.contains('Cieszyn (PL)');
+  cy.contains('Wrocław (PL)');
+  cy.contains('Kraków (PL)');
+  cy.contains('Warszawa (PL)');
+});
+
+Then('I should see the other main cities weather', (term) => {
+  cy.contains('Wrocław (PL)').should('have.length', 1);
+  cy.contains('Kraków (PL)').should('have.length', 1);
+  cy.contains('Poznań (PL)').should('have.length', 1);
+  cy.contains('Warszawa (PL)').should('have.length', 1)
 });
 
 Then("I should see the 'City not found' message", (term) => {
@@ -26,7 +35,7 @@ Then("I should see the 'City not found' message", (term) => {
 });
 
 When('I search for the weather in main polish city', () => {
-  cy.get('.ant-input').type('Kraków').should('have.value', 'Kraków')
+  cy.get('.ant-input').type('Warszawa').should('have.value', 'Warszawa')
   cy.contains('Szukaj').click();
 });
 
@@ -40,5 +49,5 @@ When('I try to load city from url', () => {
 });
 
 Then('I should see the weather in main polish city', (term) => {
-  cy.contains('Kraków (PL)');
+  cy.contains('Warszawa (PL)');
 });

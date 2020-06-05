@@ -57,7 +57,9 @@ class WeatherContainer extends Component {
   mainCitiesWeather(forecasts) {
     return forecasts.map(cityWeather => {
       return (
-        <Col span={8} key={cityWeather.city.name}>{this.mainCity(cityWeather)}</Col>
+        <Col span={8} key={cityWeather.city.name}>
+          {this.mainCity(cityWeather)}
+        </Col>
       )
     })
   }

@@ -13,7 +13,7 @@ Scenario: Searching for main polish city
   Given I am on the main page
   When I search for the weather in main polish city
   Then I should see the weather in main polish city
-#  And I should see the other main cities weather
+  And I should see the other main cities weather
 
 Scenario: Searching for non existing city
   Given I am on the main page
