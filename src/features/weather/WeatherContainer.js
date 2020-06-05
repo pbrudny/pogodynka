@@ -5,6 +5,8 @@ import { Input } from 'antd';
 import { Space, Card, Row, Col } from 'antd';
 import NotFound from "../../pages/NotFound";
 import {loadCityWeather} from "../../actions/weatherActions";
+import { format, parseISO } from 'date-fns'
+import { pl } from 'date-fns/locale'
 const { Search } = Input;
 
 class WeatherContainer extends Component {
@@ -20,11 +22,12 @@ class WeatherContainer extends Component {
   }
 
   hourlyWeather(list) {
-    return list.slice(0, 5).map(el => {
+    return list.slice(0, 8).map(el => {
       const {main, wind, weather, dt_txt} = el;
       return (
-        <p key={dt_txt}>
-          {dt_txt}: {weather[0].description} {main.temp} °C  (Ciśnienie: {main.pressure}hpa, Wiatr: {wind.speed}m/s)
+        <p key={dt_txt} style={{fontSize: '10px'}}>
+          <strong>{ format(parseISO(dt_txt), "ccc p", {locale: pl}) + ' '}</strong>
+          Temperatura: {main.temp}°C, Ciśnienie: {main.pressure}hpa, Wiatr: {wind.speed}m/s
         </p>
       )
     })
@@ -41,7 +44,7 @@ class WeatherContainer extends Component {
     if (forecast && forecast.cod === '200') {
       const title = `${forecast.city.name} (${forecast.city.country})`;
       return (
-        <Card title={title} style={{ width: 650 }}>
+        <Card title={title} style={{ width: 400 }}>
           {this.hourlyWeather(forecast.list)}
         </Card>
       )
@@ -50,19 +53,26 @@ class WeatherContainer extends Component {
     }
   }
   render() {
-    return (
+    return (<>
       <Row>
         <Col span={8} offset={8}>
-        <Space direction="vertical" size="large" style={{paddingTop: '20px', width:'650px'}}>
+        <Space direction="vertical" size="large" style={{paddingTop: '20px', width:'400px'}}>
           <Search
             placeholder="Podaj miasto np. Warszawa"
             enterButton="Szukaj"
             onSearch={city => this.handleSearch(city)}
           />
-          {this.mainCity()}
+          <div>{this.mainCity()}</div>
         </Space>
         </Col>
       </Row>
+        <hr />
+        <Row>
+          <Col span={8}>{this.mainCity()}</Col>
+          <Col span={8}>{this.mainCity()}</Col>
+          <Col span={8}>{this.mainCity()}</Col>
+        </Row>
+    </>
     )
   }
 }
