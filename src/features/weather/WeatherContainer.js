@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import history from '../../history';
 import { Input } from 'antd';
 import { Space, Card, Row, Col } from 'antd';
 import NotFound from "../../pages/NotFound";
@@ -8,6 +8,10 @@ import {loadCityWeather} from "../../actions/weatherActions";
 const { Search } = Input;
 
 class WeatherContainer extends Component {
+  constructor() {
+    super();
+    this.handleSearch = this.handleSearch.bind(this);
+  }
   componentDidMount() {
     const city = this.props.match.params.city;
     if (city) {
@@ -24,6 +28,11 @@ class WeatherContainer extends Component {
         </p>
       )
     })
+  }
+
+  handleSearch(city) {
+    this.props.dispatch(loadCityWeather(city));
+    history.push('/' + city);
   }
 
   mainCity() {
@@ -51,7 +60,7 @@ class WeatherContainer extends Component {
             placeholder="Podaj miasto np. Warszawa"
             enterButton="Szukaj"
             size="large"
-            onSearch={city => this.props.dispatch(loadCityWeather(city))}
+            onSearch={city => this.handleSearch(city)}
           />
           {this.mainCity()}
         </Space>
