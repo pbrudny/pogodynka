@@ -16,5 +16,5 @@ export default function Error404Gif(props) {
   const small = selected + '/200w_d.gif';
   const loadingGif = props.small ? small : normal;
 
-  return <img src={loadingGif} style={props.style}/>
+  return <img src={loadingGif} style={props.style} alt={'Not Found 404'}/>
 }

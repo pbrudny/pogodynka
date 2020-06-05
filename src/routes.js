@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import NotFound from "./pages/NotFound";
 import WeatherContainer from "./features/weather/WeatherContainer";
 
 const Routes = () => (

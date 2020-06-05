@@ -1,13 +1,10 @@
 import weatherReducer from './features/weather/weatherReducer';
-import {createStore, applyMiddleware, compose} from 'redux';
+import { createStore, applyMiddleware } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 
 export default function configureStore() {
   return createStore(
     weatherReducer,
-    compose(
-      applyMiddleware(thunk),
-      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
+    applyMiddleware(thunk)
   );
 }

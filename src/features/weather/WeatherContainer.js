@@ -39,11 +39,9 @@ class WeatherContainer extends Component {
     const forecast = this.props.cityWeather;
 
     if (forecast && forecast.cod === '200') {
-      const city = forecast.city.name;
-
+      const title = `${forecast.city.name} (${forecast.city.country})`;
       return (
-        <Card title={city} style={{ width: 650 }}>
-          {console.log(forecast.list)}
+        <Card title={title} style={{ width: 650 }}>
           {this.hourlyWeather(forecast.list)}
         </Card>
       )
@@ -55,11 +53,10 @@ class WeatherContainer extends Component {
     return (
       <Row>
         <Col span={8} offset={8}>
-        <Space direction="vertical" size="large" style={{paddingTop: '20px'}}>
+        <Space direction="vertical" size="large" style={{paddingTop: '20px', width:'650px'}}>
           <Search
             placeholder="Podaj miasto np. Warszawa"
             enterButton="Szukaj"
-            size="large"
             onSearch={city => this.handleSearch(city)}
           />
           {this.mainCity()}

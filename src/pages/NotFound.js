@@ -4,7 +4,7 @@ import {Col, Row} from 'antd';
 
 function NotFound() {
   return (
-    <Row>
+    <Row type="flex" justify="center" align="middle">
       <Col>
         <h2 style={{textAlign: "center"}}>City not found 404</h2>
         <Error404Gif/>
