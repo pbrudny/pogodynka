@@ -4,7 +4,7 @@ import history from '../../history';
 import { Input } from 'antd';
 import { Space, Card, Row, Col } from 'antd';
 import NotFound from "../../pages/NotFound";
-import {loadCityWeather} from "../../actions/weatherActions";
+import {loadCityWeather, loadMainCitiesWeather} from "../../actions/weatherActions";
 import { format, parseISO } from 'date-fns'
 import { pl } from 'date-fns/locale'
 const { Search } = Input;
@@ -13,11 +13,13 @@ class WeatherContainer extends Component {
   constructor() {
     super();
     this.handleSearch = this.handleSearch.bind(this);
+    this.mainCitiesWeather = this.mainCitiesWeather.bind(this);
   }
   componentDidMount() {
     const city = this.props.match.params.city;
     if (city) {
       this.props.dispatch(loadCityWeather(city));
+      this.props.dispatch(loadMainCitiesWeather(city));
     }
   }
 
@@ -35,12 +37,11 @@ class WeatherContainer extends Component {
 
   handleSearch(city) {
     this.props.dispatch(loadCityWeather(city));
+    this.props.dispatch(loadMainCitiesWeather(city))
     history.push('/' + city);
   }
 
-  mainCity() {
-    const forecast = this.props.cityWeather;
-
+  mainCity(forecast) {
     if (forecast && forecast.cod === '200') {
       const title = `${forecast.city.name} (${forecast.city.country})`;
       return (
@@ -52,6 +53,15 @@ class WeatherContainer extends Component {
       return <NotFound />
     }
   }
+
+  mainCitiesWeather(forecasts) {
+    return forecasts.map(cityWeather => {
+      return (
+        <Col span={8} key={cityWeather.city.name}>{this.mainCity(cityWeather)}</Col>
+      )
+    })
+  }
+
   render() {
     return (<>
       <Row>
@@ -62,15 +72,13 @@ class WeatherContainer extends Component {
             enterButton="Szukaj"
             onSearch={city => this.handleSearch(city)}
           />
-          <div>{this.mainCity()}</div>
+          <div>{this.mainCity(this.props.cityWeather)}</div>
         </Space>
         </Col>
       </Row>
         <hr />
         <Row>
-          <Col span={8}>{this.mainCity()}</Col>
-          <Col span={8}>{this.mainCity()}</Col>
-          <Col span={8}>{this.mainCity()}</Col>
+          {this.mainCitiesWeather(this.props.mainCitiesWeather)}
         </Row>
     </>
     )
@@ -79,7 +87,8 @@ class WeatherContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    cityWeather: state
+    cityWeather: state.cityWeather,
+    mainCitiesWeather: state.mainCitiesWeather,
   };
 };
 

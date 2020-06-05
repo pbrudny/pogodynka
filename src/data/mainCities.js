@@ -1,18 +1,6 @@
 export const mainCities = [
-  'Białystok',
-  'Bydgoszcz',
-  'Gdańsk',
-  'Katowice',
-  'Kielce',
   'Kraków',
-  'Lublin',
   'Łódź',
-  'Olsztyn',
-  'Opole',
-  'Poznań',
-  'Rzeszów',
-  'Szczecin',
   'Warszawa',
-  'Wrocław',
-  'Zielona Góra'
+  'Wrocław'
 ];
