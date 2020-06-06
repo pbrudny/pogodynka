@@ -4,12 +4,6 @@ import history from '../../history';
 import {loadCityWeather, loadMainCitiesWeather} from "../../actions/weatherActions";
 import Weather from "./Weather";
 
-//TODO:
-// add prop-types
-// clean code
-// - async/await
-// styles guides?
-
 class WeatherContainer extends Component {
   constructor() {
     super();

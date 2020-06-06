@@ -1,8 +1,9 @@
 import React from 'react';
 import { Col } from 'antd';
 import CityWeather from "./CityWeather";
+import * as PropTypes from "prop-types";
 
-function MainCitiesWeather(props) {
+const MainCitiesWeather = (props) => {
   const { forecasts, compareTo } = props;
   return forecasts.map(cityWeather => {
     return (
@@ -11,5 +12,10 @@ function MainCitiesWeather(props) {
       </Col>
     )
   })
-}
+};
+
+MainCitiesWeather.propTypes = {
+  forecasts: PropTypes.array.isRequired,
+  compareTo: PropTypes.object
+};
 export default MainCitiesWeather;

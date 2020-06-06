@@ -19,7 +19,8 @@ export function loadMainCitiesWeatherSuccess(mainCitiesWeather) {
 export function loadCityWeather(city) {
   // make async call to api, handle promise, dispatch action when promise is resolved
   return function(dispatch) {
-    return getCityWeather(city).then(cityWeather => {
+    return getCityWeather(city)
+      .then(cityWeather => {
       dispatch(loadCityWeatherSuccess(cityWeather));
     }).catch(error => {
       throw(error);
@@ -27,16 +28,17 @@ export function loadCityWeather(city) {
   };
 }
 
-export const getMainCitiesWeather = (city) => {
+export const getMainCitiesWeather = async (city) => {
   const otherCities = mainCities.filter(mainCity => mainCity.toLowerCase() !== city.toLowerCase());
   const citiesWeather = otherCities.slice(0,3).map(otherCity => getCityWeather(otherCity));
 
-  return Promise.all(citiesWeather)
-    .then(response => {
+  try {
+    const response = await Promise.all(citiesWeather);
     return response;
-  }).catch(error => {
+  } catch(error) {
+    console.log(error);
     return error;
-  });
+  }
 };
 
 export function loadMainCitiesWeather(city) {

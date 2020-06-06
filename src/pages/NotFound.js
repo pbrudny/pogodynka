@@ -2,7 +2,7 @@ import React from 'react';
 import Error404Gif from "../common/Error404Gif";
 import {Col, Row} from 'antd';
 
-function NotFound() {
+const NotFound = () => {
   return (
     <Row type="flex" justify="center" align="middle">
       <Col>
@@ -11,6 +11,6 @@ function NotFound() {
       </Col>
     </Row>
   )
-}
+};
 
 export default NotFound;

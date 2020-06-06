@@ -3,6 +3,7 @@ import { format, parseISO } from 'date-fns'
 import { pl } from 'date-fns/locale'
 import { Row, Col } from 'antd';
 import styled from 'styled-components';
+import * as PropTypes from "prop-types";
 
 const SpanGreen = styled.span`
   color: green;
@@ -54,7 +55,7 @@ const HourlyWeather = (props) => {
       const { main: mainC, wind: windC } = compareTo.list[index];
       temp = compareInPL(main.temp - mainC.temp, '°C', 'feminine');
       pressure = compareInPL(main.pressure - mainC.pressure, 'hpa', 'nondescript');
-      windSpeed = compareInPL(main.speed - mainC.speed, 'm/s', 'masculine');
+      windSpeed = compareInPL(wind.speed - windC.speed, 'm/s', 'masculine');
     }
 
     return (
@@ -74,6 +75,11 @@ const HourlyWeather = (props) => {
       </RowStyled>
     )
   })
+};
+
+HourlyWeather.propTypes = {
+  list: PropTypes.array.isRequired,
+  compareTo: PropTypes.object
 };
 
 export default HourlyWeather;

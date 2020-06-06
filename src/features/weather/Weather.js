@@ -10,7 +10,7 @@ const SpaceStyled = styled(Space)`
   width: 400px
 `;
 
-function Weather(props) {
+const Weather = (props) => {
   const { Search } = Input;
   const { onSearch, cityWeather, mainCitiesWeather } = props;
   return <>
@@ -38,12 +38,12 @@ function Weather(props) {
       </div>
     }
   </>;
-}
+};
 
 Weather.propTypes = {
   onSearch: PropTypes.func.isRequired,
-  cityWeather: PropTypes.shape({}).isRequired,
-  mainCitiesWeather: PropTypes.any.isRequired
+  cityWeather: PropTypes.object.isRequired,
+  mainCitiesWeather: PropTypes.array.isRequired
 };
 
 export default Weather;

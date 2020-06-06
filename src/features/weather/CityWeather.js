@@ -3,6 +3,7 @@ import { Card, Row, Col } from 'antd';
 import NotFound from "../../pages/NotFound";
 import HourlyWeather from "./HourlyWeather";
 import styled from 'styled-components';
+import * as PropTypes from "prop-types";
 
 const Span = styled.span`
   font-size: 12px;
@@ -38,6 +39,11 @@ const CityWeather = (props) => {
   } else {
     return '';
   }
+};
+
+CityWeather.propTypes = {
+  forecast: PropTypes.object.isRequired,
+  compareTo: PropTypes.object
 };
 
 export default CityWeather;
