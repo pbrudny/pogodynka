@@ -28,7 +28,7 @@ export function loadCityWeather(city) {
 }
 
 export const getMainCitiesWeather = (city) => {
-  const otherCities = mainCities.filter(mainCity => mainCity !== city);
+  const otherCities = mainCities.filter(mainCity => mainCity.toLowerCase() !== city.toLowerCase());
   const citiesWeather = otherCities.slice(0,3).map(otherCity => getCityWeather(otherCity));
 
   return Promise.all(citiesWeather)

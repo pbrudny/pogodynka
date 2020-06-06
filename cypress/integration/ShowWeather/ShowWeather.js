@@ -1,4 +1,4 @@
-import { Given, Before, When, And, Then } from 'cypress-cucumber-preprocessor/steps';
+import { Given, Before, When, Then } from 'cypress-cucumber-preprocessor/steps';
 
 Before(() => {
   cy.viewport(1280, 1060);
