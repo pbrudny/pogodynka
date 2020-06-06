@@ -3,21 +3,27 @@ import {Col, Input, Row, Space, Divider } from "antd";
 import * as PropTypes from "prop-types";
 import CityWeather from "./CityWeather";
 import MainCitiesWeather from "./MainCitiesWeather";
-const { Search } = Input;
+import styled from 'styled-components';
+
+const SpaceStyled = styled(Space)`
+  padding-top: 20px;
+  width: 400px
+`;
 
 function Weather(props) {
+  const { Search } = Input;
   const { onSearch, cityWeather, mainCitiesWeather } = props;
   return <>
     <Row>
       <Col span={8} offset={8}>
-        <Space direction="vertical" size="large" style={{paddingTop: "20px", width: "400px"}}>
+        <SpaceStyled direction="vertical">
           <Search
             placeholder="Podaj miasto np. Warszawa"
             enterButton="Szukaj"
             onSearch={onSearch}
           />
           { cityWeather && <CityWeather forecast={cityWeather} />}
-        </Space>
+        </SpaceStyled>
       </Col>
     </Row>
     {props.cityWeather.cod === "200" &&

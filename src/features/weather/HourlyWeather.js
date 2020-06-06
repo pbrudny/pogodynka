@@ -1,6 +1,7 @@
 import React from 'react';
 import { format, parseISO } from 'date-fns'
 import { pl } from 'date-fns/locale'
+import { Row, Col } from 'antd';
 import styled from 'styled-components';
 
 const SpanGreen = styled.span`
@@ -13,6 +14,10 @@ const SpanRed = styled.span`
 
 const SpanOrange = styled.span`
   color: orange;
+`;
+
+const RowStyled = styled(Row)`
+  font-size: 10px
 `;
 
 const HourlyWeather = (props) => {
@@ -41,30 +46,33 @@ const HourlyWeather = (props) => {
 
   return list.slice(0, 8).map((el, index) => {
     const {main, wind, dt_txt} = el;
+    let temp = `${parseInt(main.temp)} °C`;
+    let pressure = `${main.pressure} hpa`;
+    let windSpeed = `${wind.speed} m/s`;
+
     if (compareTo) {
-      const {main: mainC, wind: windC} = compareTo.list[index];
-      const tempDiff = main.temp - mainC.temp;
-      const pressureDiff = main.pressure - mainC.pressure;
-      const windDiff = main.speed - mainC.speed;
-
-      const temp = tempDiff;
-      return (
-        <p key={dt_txt} style={{fontSize: '10px'}}>
-          <strong>{ format(parseISO(dt_txt), "ccc p", {locale: pl}) + ' '}</strong>
-
-          Temperatura: { compareInPL(tempDiff, '°C', 'feminine') },
-          Ciśnienie: { compareInPL(pressureDiff, 'hpa', 'nondescript') },
-          Wiatr: { compareInPL(windDiff, 'm/s', 'masculine') }
-        </p>
-      )
-    } else {
-      return (
-        <p key={dt_txt} style={{fontSize: '10px'}}>
-          <strong>{ format(parseISO(dt_txt), "ccc p", {locale: pl}) + ' '}</strong>
-          Temperatura: {main.temp}°C, Ciśnienie: {main.pressure}hpa, Wiatr: {wind.speed}m/s
-        </p>
-      )
+      const { main: mainC, wind: windC } = compareTo.list[index];
+      temp = compareInPL(main.temp - mainC.temp, '°C', 'feminine');
+      pressure = compareInPL(main.pressure - mainC.pressure, 'hpa', 'nondescript');
+      windSpeed = compareInPL(main.speed - mainC.speed, 'm/s', 'masculine');
     }
+
+    return (
+      <RowStyled key={dt_txt}>
+        <Col span={6}>
+          <strong>{ format(parseISO(dt_txt), "ccc p", {locale: pl}) + ' '}</strong>
+        </Col>
+        <Col span={6}>
+          { temp }
+        </Col>
+        <Col span={6}>
+          { pressure }
+        </Col>
+        <Col span={6}>
+          { windSpeed }
+        </Col>
+      </RowStyled>
+    )
   })
 };
 

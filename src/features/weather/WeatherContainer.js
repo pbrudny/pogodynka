@@ -5,8 +5,6 @@ import {loadCityWeather, loadMainCitiesWeather} from "../../actions/weatherActio
 import Weather from "./Weather";
 
 //TODO:
-// display of comparison info
-// extract components
 // add prop-types
 // clean code
 // - async/await
