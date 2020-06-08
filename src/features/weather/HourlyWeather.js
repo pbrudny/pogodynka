@@ -21,9 +21,7 @@ const RowStyled = styled(Row)`
   font-size: 10px;
 `;
 
-const HourlyWeather = (props) => {
-  const { list, compareTo } = props;
-
+const HourlyWeather = ({ list, compareTo }) => {
   const compareInPL = (diff, units, type) => {
     const diffValue = parseInt(diff);
     let comp;
@@ -45,8 +43,7 @@ const HourlyWeather = (props) => {
     }
   };
 
-  return list.slice(0, 8).map((el, index) => {
-    const {main, wind, dt_txt} = el;
+  return list.slice(0, 8).map(({ main, wind, dt_txt }, index) => {
     let temp = `${parseInt(main.temp)} °C`;
     let pressure = `${main.pressure} hpa`;
     let windSpeed = `${wind.speed} m/s`;

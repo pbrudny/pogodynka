@@ -3,8 +3,7 @@ import { Col } from "antd";
 import CityWeather from "./CityWeather";
 import * as PropTypes from "prop-types";
 
-const MainCitiesWeather = (props) => {
-  const { forecasts, compareTo } = props;
+const MainCitiesWeather = ({ forecasts, compareTo }) => {
   return forecasts.map(cityWeather => {
     return (
       <Col span={8} key={cityWeather.city.name}>

@@ -10,9 +10,8 @@ const SpaceStyled = styled(Space)`
   width: 400px;
 `;
 
-const Weather = (props) => {
+const Weather = ({ onSearch, cityWeather, mainCitiesWeather }) => {
   const { Search } = Input;
-  const { onSearch, cityWeather, mainCitiesWeather } = props;
   return <>
     <Row>
       <Col span={8} offset={8}>
@@ -26,7 +25,7 @@ const Weather = (props) => {
         </SpaceStyled>
       </Col>
     </Row>
-    { cityWeather && props.cityWeather.cod === "200" &&
+    { cityWeather && cityWeather.cod === "200" &&
       <div>
         <Divider plain>Porównanie</Divider>
         <Row>

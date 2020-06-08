@@ -18,9 +18,7 @@ const RowStyled = styled(Row)`
   padding-bottom: 10px;
 `;
 
-const CityWeather = (props) => {
-  const { forecast, compareTo } = props;
-
+const CityWeather = ({ forecast, compareTo }) => {
   if (forecast && forecast.cod === '200') {
     const title = `${forecast.city.name} (${forecast.city.country})`;
     return (
