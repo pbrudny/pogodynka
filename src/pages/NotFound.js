@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import Error404Gif from "../common/Error404Gif";
-import {Col, Row} from 'antd';
+import {Col, Row} from "antd";
 
 const NotFound = () => {
   return (

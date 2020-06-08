@@ -1,13 +1,13 @@
-import React from 'react';
-import {Col, Input, Row, Space, Divider } from "antd";
+import React from "react";
+import { Col, Input, Row, Space, Divider } from "antd";
 import * as PropTypes from "prop-types";
+import styled from "styled-components";
 import CityWeather from "./CityWeather";
 import MainCitiesWeather from "./MainCitiesWeather";
-import styled from 'styled-components';
 
 const SpaceStyled = styled(Space)`
   padding-top: 20px;
-  width: 400px
+  width: 400px;
 `;
 
 const Weather = (props) => {
@@ -26,7 +26,7 @@ const Weather = (props) => {
         </SpaceStyled>
       </Col>
     </Row>
-    {props.cityWeather.cod === "200" &&
+    { cityWeather && props.cityWeather.cod === "200" &&
       <div>
         <Divider plain>Porównanie</Divider>
         <Row>
@@ -43,7 +43,7 @@ const Weather = (props) => {
 Weather.propTypes = {
   onSearch: PropTypes.func.isRequired,
   cityWeather: PropTypes.object.isRequired,
-  mainCitiesWeather: PropTypes.array.isRequired
+  mainCitiesWeather: PropTypes.array.isRequired,
 };
 
 export default Weather;

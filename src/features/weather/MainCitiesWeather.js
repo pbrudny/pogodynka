@@ -1,5 +1,5 @@
-import React from 'react';
-import { Col } from 'antd';
+import React from "react";
+import { Col } from "antd";
 import CityWeather from "./CityWeather";
 import * as PropTypes from "prop-types";
 

@@ -1,8 +1,8 @@
-import React from 'react';
-import { Card, Row, Col } from 'antd';
+import React from "react";
+import { Card, Row, Col } from "antd";
 import NotFound from "../../pages/NotFound";
 import HourlyWeather from "./HourlyWeather";
-import styled from 'styled-components';
+import styled from "styled-components";
 import * as PropTypes from "prop-types";
 
 const Span = styled.span`
@@ -11,11 +11,11 @@ const Span = styled.span`
 `;
 
 const CardStyled = styled(Card)`
-  width: 400px
+  width: 400px;
 `;
 
 const RowStyled = styled(Row)`
-  padding-bottom: 10px
+  padding-bottom: 10px;
 `;
 
 const CityWeather = (props) => {
@@ -26,12 +26,20 @@ const CityWeather = (props) => {
     return (
       <CardStyled title={title}>
         <RowStyled>
-          <Col span={6}><Span>Dzień</Span></Col>
-          <Col span={6}><Span>Temperatura</Span></Col>
-          <Col span={6}><Span>Ciśnienie</Span></Col>
-          <Col span={6}><Span>Wiatr</Span></Col>
+          <Col span={6}>
+            <Span>Dzień</Span>
+          </Col>
+          <Col span={6}>
+            <Span>Temperatura</Span>
+          </Col>
+          <Col span={6}>
+            <Span>Ciśnienie</Span>
+          </Col>
+          <Col span={6}>
+            <Span>Wiatr</Span>
+          </Col>
         </RowStyled>
-        <HourlyWeather list={forecast.list} compareTo={compareTo}/>
+        <HourlyWeather list={forecast.list} compareTo={compareTo} />
       </CardStyled>
     )
   } else if (forecast && forecast.cod === '404') {
@@ -43,7 +51,7 @@ const CityWeather = (props) => {
 
 CityWeather.propTypes = {
   forecast: PropTypes.object.isRequired,
-  compareTo: PropTypes.object
+  compareTo: PropTypes.object,
 };
 
 export default CityWeather;

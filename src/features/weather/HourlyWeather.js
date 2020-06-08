@@ -1,8 +1,8 @@
-import React from 'react';
-import { format, parseISO } from 'date-fns'
-import { pl } from 'date-fns/locale'
-import { Row, Col } from 'antd';
-import styled from 'styled-components';
+import React from "react";
+import { format, parseISO } from "date-fns";
+import { pl } from "date-fns/locale";
+import { Row, Col } from "antd";
+import styled from "styled-components";
 import * as PropTypes from "prop-types";
 
 const SpanGreen = styled.span`
@@ -18,7 +18,7 @@ const SpanOrange = styled.span`
 `;
 
 const RowStyled = styled(Row)`
-  font-size: 10px
+  font-size: 10px;
 `;
 
 const HourlyWeather = (props) => {
@@ -28,12 +28,12 @@ const HourlyWeather = (props) => {
     const diffValue = parseInt(diff);
     let comp;
 
-    if (type === 'masculine') {
-      comp = ['mniejszy o', 'większy o', 'taki sam'];
-    } else if (type === 'feminine') {
-      comp = ['mniejsza o', 'większa o', 'taka sama'];
+    if (type === "masculine") {
+      comp = ["mniejszy o", "większy o", "taki sam"];
+    } else if (type === "feminine") {
+      comp = ["mniejsza o", "większa o", "taka sama"];
     } else {
-      comp = ['mniejsze o', 'większe o', 'takie samo'];
+      comp = ["mniejsze o", "większe o", "takie samo"];
     }
 
     if (diffValue < 0) {
