@@ -1,6 +1,11 @@
 ## Setup
-###`yarn install`
+Install packages
 
+`yarn install`
+
+Set env variables. You can use sample: 
+
+`cp .env.sample .env` 
 ## Run
 
 In the project directory run:
