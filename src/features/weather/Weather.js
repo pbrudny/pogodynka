@@ -26,7 +26,7 @@ const Weather = (props) => {
         </SpaceStyled>
       </Col>
     </Row>
-    {props.cityWeather.cod === "200" &&
+    { cityWeather && props.cityWeather.cod === "200" &&
       <div>
         <Divider plain>Porównanie</Divider>
         <Row>
