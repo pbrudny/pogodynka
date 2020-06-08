@@ -18,6 +18,7 @@ Then('I should see the city weather', (term) => {
 });
 
 Then('I should see all main cities weather', (term) => {
+  cy.contains('Porównanie');
   cy.contains('Wrocław (PL)');
   cy.contains('Kraków (PL)');
   cy.contains('Warszawa (PL)');
