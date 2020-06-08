@@ -1,9 +1,9 @@
-import React from "react";
-import { format, parseISO } from "date-fns";
-import { pl } from "date-fns/locale";
-import { Row, Col } from "antd";
-import styled from "styled-components";
-import * as PropTypes from "prop-types";
+import React from 'react';
+import { format, parseISO } from 'date-fns';
+import { pl } from 'date-fns/locale';
+import { Row, Col } from 'antd';
+import styled from 'styled-components';
+import * as PropTypes from 'prop-types';
 
 const SpanGreen = styled.span`
   color: green;
@@ -26,24 +26,23 @@ const HourlyWeather = ({ list, compareTo }) => {
     const diffValue = parseInt(diff);
     let comp;
 
-    if (type === "masculine") {
-      comp = ["mniejszy o", "większy o", "taki sam"];
-    } else if (type === "feminine") {
-      comp = ["mniejsza o", "większa o", "taka sama"];
+    if (type === 'masculine') {
+      comp = ['mniejszy o', 'większy o', 'taki sam'];
+    } else if (type === 'feminine') {
+      comp = ['mniejsza o', 'większa o', 'taka sama'];
     } else {
-      comp = ["mniejsze o", "większe o", "takie samo"];
+      comp = ['mniejsze o', 'większe o', 'takie samo'];
     }
 
     if (diffValue < 0) {
-      return <SpanRed>{`${comp[0]} ${ Math.abs(diffValue)} ${units}`}</SpanRed>
-    } else if (diffValue > 0) {
+      return <SpanRed>{`${comp[0]} ${Math.abs(diffValue)} ${units}`}</SpanRed>;
+    } if (diffValue > 0) {
       return <SpanGreen>{`${comp[1]} ${parseInt(diffValue)} ${units}`}</SpanGreen>;
-    } else {
-      return <SpanOrange>{comp[2]}</SpanOrange>;
     }
+    return <SpanOrange>{comp[2]}</SpanOrange>;
   };
 
-  return list.slice(0, 8).map(({ main, wind, dt_txt }, index) => {
+  return list.slice(0, 8).map(({ main, wind, dt_txt: dateTxt }, index) => {
     let temp = `${parseInt(main.temp)} °C`;
     let pressure = `${main.pressure} hpa`;
     let windSpeed = `${wind.speed} m/s`;
@@ -56,9 +55,9 @@ const HourlyWeather = ({ list, compareTo }) => {
     }
 
     return (
-      <RowStyled key={dt_txt}>
+      <RowStyled key={dateTxt}>
         <Col span={6}>
-          <strong>{ format(parseISO(dt_txt), "ccc p", {locale: pl}) + ' '}</strong>
+          <strong>{ `${format(parseISO(dateTxt), 'ccc p', { locale: pl })} `}</strong>
         </Col>
         <Col span={6}>
           { temp }
@@ -70,13 +69,13 @@ const HourlyWeather = ({ list, compareTo }) => {
           { windSpeed }
         </Col>
       </RowStyled>
-    )
-  })
+    );
+  });
 };
 
 HourlyWeather.propTypes = {
   list: PropTypes.array.isRequired,
-  compareTo: PropTypes.object
+  compareTo: PropTypes.object,
 };
 
 export default HourlyWeather;

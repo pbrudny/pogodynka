@@ -1,6 +1,6 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
-import WeatherContainer from "./features/weather/WeatherContainer";
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import WeatherContainer from './features/weather/WeatherContainer';
 
 const Routes = () => (
   <main>

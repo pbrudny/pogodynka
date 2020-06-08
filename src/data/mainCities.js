@@ -1,6 +1,8 @@
-export const mainCities = [
+const mainCities = [
   'Wrocław',
   'Kraków',
   'Warszawa',
-  'Poznań'
+  'Poznań',
 ];
+
+export default mainCities;

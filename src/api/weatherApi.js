@@ -1,36 +1,20 @@
-import weather from "openweather-apis";
-import {mainCities} from "../data/mainCities";
+import weather from 'openweather-apis';
 
-const getWeatherForecast = () => {
+export const getWeatherForecast = () => {
   return new Promise((resolve, reject) => {
-    weather.getWeatherForecast( (err, obj) => {
+    weather.getWeatherForecast((err, obj) => {
       if (err) reject(err);
-      resolve(obj)
-    })
-  })
+      resolve(obj);
+    });
+  });
 };
 
 export const getCityWeather = async (city) => {
   weather.setCity(city);
   try {
-    const response  = await getWeatherForecast();
+    const response = await getWeatherForecast();
     return response;
-  } catch(error) {
-    console.log(error);
-    return error;
-  }
-};
-
-export const getMainCitiesWeather = async (city) => {
-  try {
-    const response = await Promise.all([
-      getCityWeather(mainCities[0]),
-      getCityWeather(mainCities[1]),
-      getCityWeather(mainCities[2])
-    ]);
-    return response;
-  } catch(error) {
-    console.log(error);
+  } catch (error) {
     return error;
   }
 };

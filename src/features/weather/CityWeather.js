@@ -1,9 +1,9 @@
-import React from "react";
-import { Card, Row, Col } from "antd";
-import NotFound from "../../pages/NotFound";
-import HourlyWeather from "./HourlyWeather";
-import styled from "styled-components";
-import * as PropTypes from "prop-types";
+import React from 'react';
+import { Card, Row, Col } from 'antd';
+import styled from 'styled-components';
+import * as PropTypes from 'prop-types';
+import NotFound from '../../pages/NotFound';
+import HourlyWeather from './HourlyWeather';
 
 const Span = styled.span`
   font-size: 12px;
@@ -39,12 +39,11 @@ const CityWeather = ({ forecast, compareTo }) => {
         </RowStyled>
         <HourlyWeather list={forecast.list} compareTo={compareTo} />
       </CardStyled>
-    )
-  } else if (forecast && forecast.cod === '404') {
-    return <NotFound />
-  } else {
-    return '';
+    );
+  } if (forecast && forecast.cod === '404') {
+    return <NotFound />;
   }
+  return '';
 };
 
 CityWeather.propTypes = {

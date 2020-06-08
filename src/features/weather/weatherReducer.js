@@ -1,16 +1,16 @@
-import * as types from "../../actions/actionTypes";
+import * as types from '../../actions/actionTypes';
 
 const initialState = {
   cityWeather: {},
-  mainCitiesWeather: []
+  mainCitiesWeather: [],
 };
 
 export default function weatherReducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case types.LOAD_CITY_WEATHER_SUCCESS:
-      return Object.assign({}, state, {cityWeather: action.cityWeather});
+      return { ...state, cityWeather: action.cityWeather };
     case types.LOAD_MAIN_CITIES_WEATHER_SUCCESS:
-      return Object.assign({}, state, {mainCitiesWeather: action.mainCitiesWeather});
+      return { ...state, mainCitiesWeather: action.mainCitiesWeather };
     default:
       return state;
   }
